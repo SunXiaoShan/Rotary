@@ -12,6 +12,8 @@
 		8F9DA43321AA414F00BEA589 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F9DA43121AA414F00BEA589 /* Main.storyboard */; };
 		8F9DA43521AA415100BEA589 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F9DA43421AA415100BEA589 /* Assets.xcassets */; };
 		8F9DA43821AA415100BEA589 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F9DA43621AA415100BEA589 /* LaunchScreen.storyboard */; };
+		8F9DA44021AA4FFB00BEA589 /* SMRotaryWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9DA43F21AA4FFB00BEA589 /* SMRotaryWheel.swift */; };
+		8F9DA44321AA5F8C00BEA589 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F9DA44221AA5F8C00BEA589 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		8F9DA43421AA415100BEA589 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8F9DA43721AA415100BEA589 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8F9DA43921AA415100BEA589 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F9DA43F21AA4FFB00BEA589 /* SMRotaryWheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMRotaryWheel.swift; sourceTree = "<group>"; };
+		8F9DA44221AA5F8C00BEA589 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F9DA44321AA5F8C00BEA589 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +45,7 @@
 			children = (
 				8F9DA42C21AA414F00BEA589 /* Rotary */,
 				8F9DA42B21AA414F00BEA589 /* Products */,
+				8F9DA44121AA5F8C00BEA589 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,8 +66,17 @@
 				8F9DA43421AA415100BEA589 /* Assets.xcassets */,
 				8F9DA43621AA415100BEA589 /* LaunchScreen.storyboard */,
 				8F9DA43921AA415100BEA589 /* Info.plist */,
+				8F9DA43F21AA4FFB00BEA589 /* SMRotaryWheel.swift */,
 			);
 			path = Rotary;
+			sourceTree = "<group>";
+		};
+		8F9DA44121AA5F8C00BEA589 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8F9DA44221AA5F8C00BEA589 /* QuartzCore.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,6 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F9DA44021AA4FFB00BEA589 /* SMRotaryWheel.swift in Sources */,
 				8F9DA43021AA414F00BEA589 /* ViewController.swift in Sources */,
 				8F9DA42E21AA414F00BEA589 /* AppDelegate.swift in Sources */,
 			);
@@ -282,15 +298,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YXTP59538K;
 				INFOPLIST_FILE = Rotary/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = sunxiaoshan.Rotary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -300,15 +319,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YXTP59538K;
 				INFOPLIST_FILE = Rotary/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = sunxiaoshan.Rotary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
