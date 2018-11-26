@@ -9,13 +9,13 @@
 import UIKit
 import QuartzCore
 
-protocol SMRotaryProtocol: NSObjectProtocol {
+protocol SMRotaryDelegate: NSObjectProtocol {
     func wheelDidChangeValue(_ newValue: String)
 }
 
 class SMRotaryWheel: UIControl {
     
-    weak var delegate: SMRotaryProtocol?
+    weak var delegate: SMRotaryDelegate?
     var container: UIView!
     var numberOfSections: Int = 0
     
@@ -34,10 +34,6 @@ class SMRotaryWheel: UIControl {
         self.init(frame: frame)
         self.numberOfSections = sectionsCount
         drawWheel()
-        
-//        timer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true, block: { [weak self] (_) in
-//            self?.rotate()
-//        })
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -74,14 +70,7 @@ class SMRotaryWheel: UIControl {
         container.isUserInteractionEnabled = false
         self.addSubview(container)
     }
-    
-    func rotate() {
-        let radians:Float = -0.1
-        let transform: CGAffineTransform = container.transform.rotated(by: CGFloat(radians))
-        
-        container.transform = transform
-    }
-    
+
 }
 
 extension SMRotaryWheel {
@@ -127,6 +116,7 @@ extension SMRotaryWheel {
             return
         }
         
+        // Step 1: handle uiview
         let angleSize:CGFloat = 2 * .pi / CGFloat(numberOfSections)
         
         let tr: CGAffineTransform = container.transform
@@ -144,12 +134,28 @@ extension SMRotaryWheel {
     
         let transform: CGAffineTransform = container.transform.rotated(by: shift)
         container.transform = transform
+        
+        // Step 2: handle callback result
+        calculateNewValue()
+        
     }
-    
+}
+
+extension SMRotaryWheel {
     func calculateDistanceFromCenter(_ point: CGPoint) -> CGFloat {
         let center = CGPoint(x: self.bounds.size.width/2, y: self.bounds.size.height/2)
         let dx = point.x - center.x
         let dy = point.y - center.y
         return sqrt(dx*dx + dy*dy)
+    }
+    
+    func calculateNewValue() {
+        let tr: CGAffineTransform = container.transform
+        let angle = atan2(tr.b, tr.a) - normalizeAngle
+        
+        let angleSize:CGFloat = 2 * .pi / CGFloat(numberOfSections)
+        
+        let index = lround(Double(angle / angleSize))
+        self.delegate?.wheelDidChangeValue(String("\(index)"))
     }
 }
