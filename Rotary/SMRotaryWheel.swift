@@ -19,6 +19,8 @@ class SMRotaryWheel: UIControl {
     var container: UIView!
     var numberOfSections: Int = 0
     
+    let normalizeAngle:CGFloat = 90.0 / 180 * .pi
+    
     var deltaAngle:CGFloat = 0.0
     
     var timer: Timer!
@@ -67,6 +69,8 @@ class SMRotaryWheel: UIControl {
             container.addSubview(label)
         }
         
+        let transform: CGAffineTransform = container.transform.rotated(by: normalizeAngle )
+        container.transform = transform
         container.isUserInteractionEnabled = false
         self.addSubview(container)
     }
@@ -126,25 +130,20 @@ extension SMRotaryWheel {
         let angleSize:CGFloat = 2 * .pi / CGFloat(numberOfSections)
         
         let tr: CGAffineTransform = container.transform
-        let angle = atan2(tr.b, tr.a)
+        let angle = atan2(tr.b, tr.a) + normalizeAngle
         let isPositive:CGFloat = angle > 0 ? 1.0 : -1.0
 
         let angleSizeDegree = angleSize * 180.0 / .pi
         let degree = angle * 180.0 / .pi
-        print("endTracking - angleSizeDegree:\(angleSizeDegree) current degree:\(degree)")
+        print("endTracking - angleSizeDegree:\(angleSizeDegree) current_degree:\(degree)")
         
         let segmentCount = abs(angle) / angleSize
         let segmentCountFullNumber = segmentCount - CGFloat(Int(segmentCount))
         let roundSegment = segmentCountFullNumber > 0.5 ? CGFloat(Int(segmentCount) + 1)*angleSize : CGFloat(Int(segmentCount))*angleSize
         let shift = isPositive * roundSegment - angle
     
-        let transform: CGAffineTransform = container.transform.rotated(by: shift )
+        let transform: CGAffineTransform = container.transform.rotated(by: shift)
         container.transform = transform
-        
-    }
-    
-    func isNearRightSide(_ angle:CGFloat) -> Bool {
-        return true
     }
     
     func calculateDistanceFromCenter(_ point: CGPoint) -> CGFloat {
